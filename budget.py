@@ -1,6 +1,7 @@
-import json
-import os
+import json # Import the json module to work with JSON data
+import os # Import the os module to work with file paths
 
+# Define a function to load data from a JSON file
 def load_data(filename):
     if os.path.exists(filename):
         with open(filename, 'r') as file:
@@ -8,21 +9,24 @@ def load_data(filename):
     else:
         return {}
 
+# Define a function to save data to a JSON file
 def save_data(data, filename):
     with open(filename, 'w') as file:
         json.dump(data, file, indent=4)
 
+# Define a function to add monthly income
 def add_income(data):
     income = float(input("Enter your total monthly income: "))
     data['income'] = income
     return data
 
+# Define a function to add an expense
 def add_expense(data):
     if 'expenses' not in data:
-        data['expenses'] = {}
+        data['expenses'] = {} # Create an empty dictionary for expenses if it doesn't exist
     
     category = input("Enter the expense category (Housing, Utilities, Groceries, Transportation, Entertainment, Other): ")
-    amount = float(input("Enter the expense amount: "))
+    amount = float(input("Enter the expense amount: ")) # Convert the input to a float
     description = input("Enter a brief description of the expense: ")
     
     if category in data['expenses']:
@@ -32,8 +36,9 @@ def add_expense(data):
     
     return data
 
+# Define a function to display a monthly summary
 def monthly_summary(data):
-    total_expenses = 0
+    total_expenses = 0 # Initialize a variable to store the total expenses
     income = data.get('income', 0)
     expenses = data.get('expenses', {})
 
@@ -45,10 +50,11 @@ def monthly_summary(data):
         total_expenses += category_total
         print(f"{category}: ${category_total:.2f} ({(category_total / income * 100):.2f}%)")
 
-    net_savings = income - total_expenses
+    net_savings = income - total_expenses # Calculate the net savings
     print(f"Total Expenses: ${total_expenses:.2f}")
     print(f"Net Savings: ${net_savings:.2f}")
 
+# Define the main function
 def main():
     data_file = 'budget_data.json'
     budget_data = load_data(data_file)
@@ -74,5 +80,6 @@ def main():
         else:
             print("Invalid choice. Please choose a valid option.")
 
+# Call the main function
 if __name__ == "__main__":
     main()
