@@ -1,0 +1,23 @@
+{
+    "income": 2000.0,
+    "expenses": {
+        "Housing": [
+            {
+                "amount": 900.0,
+                "description": "Rent"
+            }
+        ],
+        "Entertainment": [
+            {
+                "amount": 10.0,
+                "description": "DisneyPlus"
+            }
+        ],
+        "Groceries": [
+            {
+                "amount": 200.0,
+                "description": "Food"
+            }
+        ]
+    }
+}
